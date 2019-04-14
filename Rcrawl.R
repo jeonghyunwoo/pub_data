@@ -1,6 +1,6 @@
 # R: 기사 스크랩 ####
 library(pacman)
-p_load(robotstxt,rvest,tidyverse)
+p_load(robotstxt,rvest,tidyverse,reticulate)
 url = "https://news.naver.com/main/list.nhn?mode=LS2D&mid=shm&sid1=101&sid2=259"
 css = "#main_content > div.list_body.newsflash_body > ul.type06_headline > li > dl > dt > a"
 a = read_html(url) %>% 
@@ -46,6 +46,7 @@ np = import('newspaper')
 # nw1$publish_date
 # nw1$text
 
+atcl = np$Article
 gen_txt = function(x){
   # x : href
   nw = atcl(x)
@@ -65,3 +66,26 @@ news = news %>%
   select(-a)
 toc()
 news
+
+# daum crawling ####
+np = import('newspaper')
+url = "https://search.daum.net/search?w=news&nil_search=btn&DA=NTB&enc=utf8&cluster=y&cluster_page=1&q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90"
+css = "#clusterResultUL > li > div.wrap_cont > div > div > a"
+dh = read_html(url)
+txts = dh %>% 
+  html_nodes(css)
+link = txts %>% html_attr('href')
+main  = txts %>% html_text()
+dnews = tibble(main,link)
+dnews<-dnews %>% 
+  mutate(a = map(link,gen_txt),
+         title = map_chr(a,1),
+         txt = map_chr(a,2) %>% 
+           str_remove_all('\r|\t|\n')) %>% 
+  select(-a)
+#clusterResultUL > li:nth-child(2) > div.wrap_cont > div > div.wrap_tit.mg_tit > a
+
+kon = import('konlpy')
+okt = kon$tag$Okt()
+dnews1 = dnews %>% 
+  mutate(tok = map(txt,okt$nouns))
