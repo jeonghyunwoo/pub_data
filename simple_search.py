@@ -7,6 +7,7 @@ from newspaper import Article
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font
 import time
+import os
 
 def news(qry):
     lks = []
@@ -59,5 +60,4 @@ def news(qry):
         ws.cell(i+2,4).font = Font(underline='single', color='0563C1')
 
     wb.save('news.xlsx')
-    import os
     os.startfile('news.xlsx')
