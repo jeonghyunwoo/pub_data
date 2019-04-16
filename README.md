@@ -13,5 +13,10 @@ Python:
     a = soup(url,'html.parser')   
     a.select(css) # X  
     a.find_all('p',{'class':'f_eb desc'}) # O  
+    
+# Tip  
+원데이터에 그룹별 건수 항목 더하기  
+df['count'] = df.groupby('id')['id'].transform('count')  
+=> row 수는 똑같고 column 수만 1개 늘어남(count 항목 신설)  
 
 
