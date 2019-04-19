@@ -15,9 +15,9 @@ Python:
     a.find_all('p',{'class':'f_eb desc'}) # O  
 
 # 응용  
-Okt말고 Kkma, Hannanum, Komoran 등을 적용해서 해볼 수 있다  
-model hyperparameter를 변경시킬 수 있다  
-불용어를 추가해서 좀 더 정밀하게 해볼 수 있다(것,이,등,수,말,로)  
+- Okt말고 Kkma, Hannanum, Komoran 등을 적용해서 해볼 수 있다  
+- model hyperparameter를 변경시킬 수 있다  
+- 불용어를 제거한 후 좀 더 정밀하게 해볼 수 있다(것,이,등,수,말,로)  
     
 # Tip  
 &nbsp;원데이터에 그룹별 건수 항목 더하기  
