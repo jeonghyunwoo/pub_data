@@ -1,3 +1,12 @@
+# last code/data info  
+>**social_d2v_3.ipynb**  
+>**ndf3.pkl**  
+>**R: xgboost modeling**  
+![caret xgboost example](https://www.kaggle.com/pelkoja/visual-xgboost-tuning-with-caret)  
+registerDoParallel(4)  
+mod<-train(tcycle~.,data=select(tr,dx2:dx10,tycle),method='xgbTree',trControl=trainControl(method='cv',number=5))  
+
+
 # pub_data
 public data visualization, analysis  
 
