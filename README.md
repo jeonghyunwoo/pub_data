@@ -1,3 +1,7 @@
+# last code,data  
+code: social_d2v_3.ipynb  
+data: ndf3.pkl  
+
 # pub_data
 public data visualization, analysis  
 
