@@ -9,7 +9,10 @@ from bs4 import BeautifulSoup as soup
 import re, time, itertools
 from newspaper import Article
 import numpy as np
-# 가계부채로 검색
+from nltk.corpus import stopwords
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
 
 def goog_news(sch_word,yyyymm,pages=3):
   quo_word = quote_plus(sch_word)
@@ -64,6 +67,26 @@ def goog_news(sch_word,yyyymm,pages=3):
   news.reset_index(drop=True,inplace=True)
     
   return news
+
+stop_words = set(stopwords.words('english'))
+
+def wc(txt):
+  '''txt는 문자열(str)
+  ex : txt = df.text.sum()
+  '''
+  txt = txt.lower()
+  words = txt.split() #단어마다 나눠서 단어리스트로 만든다
+  words = [w for w in words if not w in stop_words]
+  clean_txt = ' '.join(words) # 다시 하나의 문자열로
+  cloud = WordCloud(width = 600, height = 600).generate(clean_txt)
+  plt.figure(figsize=(10,8))
+  plt.imshow(cloud)
+  plt.axis('off')
+  
+  
+  
+
   
 if __name__ == '__main__':
-  print("goog_news('검색어',201908,pages=3)")
+  print("""goog_news('검색어',201908,pages=3)
+  wc(df.text.sum())""")
