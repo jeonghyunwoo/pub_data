@@ -24,6 +24,7 @@ def goog_news(sch_word,yyyymm,pages=3):
     b = r.find_all('a')
     lks = [h['href'].replace('/url?q=','') for h in b if h['href'][:4]=='/url']
     lks = [unquote(lk) for lk in lks]
+    lks = [l.split('&sa')[0] for l in lks]
     links.append(lks)
   
   links = list(itertools.chain(*links))  
@@ -64,3 +65,5 @@ def goog_news(sch_word,yyyymm,pages=3):
     
   return news
   
+if __name__ == '__main__':
+  print("goog_news('검색어',201908,pages=3)")
