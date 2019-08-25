@@ -1,6 +1,7 @@
 # last code,data  
 code: social_d2v_3.ipynb  
 data: ndf3.pkl  
+goog_news.py : goog_news('가계부채 gold price',201908,pages=3), 구글뉴스결과를 pd.DataFrame으로 산출한다  
 
 # pub_data
 public data visualization, analysis  
